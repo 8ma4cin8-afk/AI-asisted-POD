@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI w EEN — Marcin Jabłoński | Białystok 2026</title>
+<link rel="stylesheet" href="node_modules/reveal.js/dist/reset.css">
+<link rel="stylesheet" href="node_modules/reveal.js/dist/reveal.css">
+<style>
+  /* ─── BRAND ─────────────────────────────────────────────── */
+  :root {
+    --een-blue:   #0057A8;
+    --een-light:  #E8F2FF;
+    --een-dark:   #003A72;
+    --een-accent: #0082C8;
+    --text-dark:  #1A1A2E;
+    --text-mid:   #4A5568;
+    --white:      #FFFFFF;
+    --warn:       #E53E3E;
+    --gold:       #D4A017;
+  }
+
+  .reveal { font-family: 'Segoe UI', Calibri, Arial, sans-serif; }
+  .reveal .slides { text-align: left; }
+
+  /* ─── SLIDE BASE ─────────────────────────────────────────── */
+  .reveal section {
+    padding: 0 !important;
+    height: 100%;
+    box-sizing: border-box;
+  }
+
+  /* ─── TITLE SLIDE ────────────────────────────────────────── */
+  .slide-title {
+    background: var(--een-blue);
+    height: 100vh;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 80px !important;
+    box-sizing: border-box;
+  }
+  .slide-title .overline {
+    color: rgba(255,255,255,0.65);
+    font-size: 0.75em;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .slide-title h1 {
+    color: var(--white);
+    font-size: 2.6em;
+    font-weight: 700;
+    line-height: 1.15;
+    margin: 0 0 20px 0;
+    text-shadow: none;
+  }
+  .slide-title h1 span {
+    color: #7EC8FF;
+  }
+  .slide-title .subtitle {
+    color: rgba(255,255,255,0.8);
+    font-size: 1.05em;
+    margin-bottom: 48px;
+  }
+  .slide-title .meta {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+  }
+  .slide-title .meta .tag {
+    background: rgba(255,255,255,0.15);
+    color: white;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.72em;
+    letter-spacing: 1px;
+  }
+  .slide-title .een-logo-text {
+    font-size: 0.85em;
+    color: rgba(255,255,255,0.5);
+    border-left: 2px solid rgba(255,255,255,0.3);
+    padding-left: 20px;
+  }
+
+  /* ─── CONTENT SLIDE BASE ─────────────────────────────────── */
+  .slide-content {
+    background: var(--white);
+    height: 100vh;
+    display: flex !important;
+    flex-direction: column;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+  .slide-header {
+    background: var(--een-blue);
+    padding: 22px 60px;
+    flex-shrink: 0;
+  }
+  .slide-header .chapter {
+    color: rgba(255,255,255,0.6);
+    font-size: 0.62em;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .slide-header h2 {
+    color: var(--white);
+    font-size: 1.35em;
+    font-weight: 700;
+    margin: 0;
+    text-shadow: none;
+  }
+  .slide-body {
+    flex: 1;
+    padding: 36px 60px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* ─── DARK SLIDE ─────────────────────────────────────────── */
+  .slide-dark {
+    background: var(--een-dark);
+    height: 100vh;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 80px !important;
+    box-sizing: border-box;
+  }
+  .slide-dark .chapter {
+    color: rgba(255,255,255,0.5);
+    font-size: 0.62em;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .slide-dark h2 {
+    color: var(--white);
+    font-size: 2em;
+    font-weight: 700;
+    margin: 0 0 20px 0;
+    text-shadow: none;
+  }
+  .slide-dark p {
+    color: rgba(255,255,255,0.8);
+    font-size: 1em;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ─── BIG STAT ───────────────────────────────────────────── */
+  .stat-row {
+    display: flex;
+    gap: 28px;
+    margin: 20px 0;
+  }
+  .stat-box {
+    flex: 1;
+    background: var(--een-light);
+    border-top: 4px solid var(--een-blue);
+    border-radius: 6px;
+    padding: 20px 22px;
+    text-align: center;
+  }
+  .stat-box .num {
+    font-size: 2.6em;
+    font-weight: 800;
+    color: var(--een-blue);
+    line-height: 1;
+    display: block;
+  }
+  .stat-box .label {
+    font-size: 0.72em;
+    color: var(--text-mid);
+    margin-top: 6px;
+    display: block;
+    line-height: 1.3;
+  }
+
+  /* ─── TWO COLUMNS ────────────────────────────────────────── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin-top: 12px;
+  }
+  .col-card {
+    background: var(--een-light);
+    border-radius: 8px;
+    padding: 22px 24px;
+    border-left: 4px solid var(--een-blue);
+  }
+  .col-card h3 {
+    color: var(--een-dark);
+    font-size: 0.88em;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .col-card p, .col-card li {
+    font-size: 0.8em;
+    color: var(--text-mid);
+    line-height: 1.55;
+    margin: 0;
+  }
+  .col-card ul { padding-left: 16px; margin: 0; }
+  .col-card li { margin-bottom: 5px; }
+
+  /* ─── PIPELINE ───────────────────────────────────────────── */
+  .pipeline {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin: 24px 0;
+    flex-wrap: nowrap;
+  }
+  .pipe-step {
+    flex: 1;
+    background: var(--een-light);
+    border-top: 3px solid var(--een-blue);
+    border-radius: 6px;
+    padding: 14px 12px;
+    text-align: center;
+    position: relative;
+  }
+  .pipe-step .icon {
+    font-size: 1.5em;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .pipe-step .name {
+    font-size: 0.72em;
+    font-weight: 700;
+    color: var(--een-dark);
+    display: block;
+  }
+  .pipe-step .desc {
+    font-size: 0.62em;
+    color: var(--text-mid);
+    display: block;
+    margin-top: 3px;
+    line-height: 1.3;
+  }
+  .pipe-arrow {
+    color: var(--een-blue);
+    font-size: 1.2em;
+    padding: 0 4px;
+    flex-shrink: 0;
+  }
+
+  /* ─── HIGHLIGHT BOX ──────────────────────────────────────── */
+  .highlight-box {
+    background: var(--een-blue);
+    color: white;
+    border-radius: 8px;
+    padding: 20px 26px;
+    margin: 16px 0;
+  }
+  .highlight-box p {
+    margin: 0;
+    font-size: 0.9em;
+    line-height: 1.5;
+    color: white !important;
+  }
+  .highlight-box strong { color: #7EC8FF; }
+
+  /* ─── QUOTE ──────────────────────────────────────────────── */
+  .quote-block {
+    border-left: 5px solid var(--een-blue);
+    padding: 16px 24px;
+    margin: 16px 0;
+    background: var(--een-light);
+    border-radius: 0 8px 8px 0;
+  }
+  .quote-block p {
+    font-size: 0.88em;
+    color: var(--text-dark);
+    font-style: italic;
+    margin: 0 0 8px 0;
+    line-height: 1.5;
+  }
+  .quote-block .source {
+    font-size: 0.7em;
+    color: var(--een-blue);
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  /* ─── TABLE ──────────────────────────────────────────────── */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.72em;
+    margin-top: 12px;
+  }
+  .data-table th {
+    background: var(--een-blue);
+    color: white;
+    padding: 9px 12px;
+    text-align: left;
+    font-weight: 600;
+  }
+  .data-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #E2E8F0;
+    color: var(--text-dark);
+    vertical-align: top;
+  }
+  .data-table tr:nth-child(even) td { background: var(--een-light); }
+  .badge {
+    background: var(--een-blue);
+    color: white;
+    border-radius: 10px;
+    padding: 2px 8px;
+    font-size: 0.85em;
+    font-weight: 600;
+  }
+  .badge-gold { background: var(--gold); }
+
+  /* ─── AGENT CARDS ────────────────────────────────────────── */
+  .agent-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 16px;
+  }
+  .agent-card {
+    border-radius: 8px;
+    padding: 18px 16px;
+    text-align: center;
+  }
+  .agent-card .emoji { font-size: 1.8em; display: block; margin-bottom: 8px; }
+  .agent-card .aname { font-size: 0.8em; font-weight: 700; display: block; margin-bottom: 4px; }
+  .agent-card .arole { font-size: 0.68em; line-height: 1.3; display: block; }
+
+  .ac-claude { background: #EBF4FF; border-top: 3px solid #0057A8; }
+  .ac-claude .aname { color: #0057A8; }
+  .ac-grok   { background: #F0FFF4; border-top: 3px solid #276749; }
+  .ac-grok .aname { color: #276749; }
+  .ac-deep   { background: #FFF5F5; border-top: 3px solid #C53030; }
+  .ac-deep .aname { color: #C53030; }
+  .ac-perp   { background: #FFFBEB; border-top: 3px solid #B7791F; }
+  .ac-perp .aname { color: #B7791F; }
+
+  /* ─── CLOSING SLIDE ──────────────────────────────────────── */
+  .slide-closing {
+    background: var(--een-dark);
+    height: 100vh;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 60px !important;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  .slide-closing .big-q {
+    color: white;
+    font-size: 1.9em;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 28px;
+    max-width: 80%;
+  }
+  .slide-closing .big-q span { color: #7EC8FF; }
+  .slide-closing .sub {
+    color: rgba(255,255,255,0.6);
+    font-size: 0.85em;
+    max-width: 65%;
+    line-height: 1.6;
+  }
+  .slide-closing .cta {
+    margin-top: 36px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 8px;
+    padding: 16px 32px;
+    color: white;
+    font-size: 0.82em;
+  }
+
+  /* ─── REVEAL OVERRIDES ───────────────────────────────────── */
+  .reveal h1, .reveal h2, .reveal h3 { text-transform: none; }
+  .reveal p { margin: 0; }
+  .reveal ul { display: block; margin: 0; padding-left: 18px; }
+  .reveal li { margin-bottom: 6px; font-size: 0.82em; color: var(--text-mid); line-height: 1.5; }
+  .reveal .progress { background: rgba(0,0,0,0.15); }
+  .reveal .progress span { background: var(--een-blue); }
+  .reveal .slide-number { color: rgba(0,0,0,0.3); font-size: 0.7em; }
+  .reveal aside.notes { display: none !important; }
+
+  @keyframes pulse-drive {
+    0%   { box-shadow: 0 0 0 0 rgba(66,133,244,0.7); transform: scale(1); }
+    50%  { box-shadow: 0 0 0 10px rgba(66,133,244,0); transform: scale(1.08); }
+    100% { box-shadow: 0 0 0 0 rgba(66,133,244,0); transform: scale(1); }
+  }
+  .from-drive-highlight {
+    animation: pulse-drive 1.2s ease-in-out infinite;
+    border-radius: 8px;
+    display: inline-block;
+  }
+
+
+  .lead {
+    font-size: 0.95em;
+    color: var(--text-mid);
+    line-height: 1.6;
+    margin-bottom: 16px !important;
+  }
+  .small { font-size: 0.75em; color: var(--text-mid); }
+
+    .gallery-thumb {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      border-radius: 5px;
+      border: 1px solid #CBD5E0;
+      cursor: zoom-in;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .gallery-thumb:hover {
+      transform: scale(1.04);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+    }
+
+    </style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- ═<!-- ═══════════════════════════════════════════════════════════
+     SLAJD 0 — TYTUŁ
+═══════════════════════════════════════════════════════════ -->
+<section>
+<div class="slide-title">
+  <div class="overline">Spotkanie Krajowe EEN · Białystok · Czerwiec 2026</div>
+  <h1>AI-Enhanced Business Development —<br><span>Better Profiles, Smarter Matches, Meaningful Partnerships</span></h1>
+  <div class="subtitle">Narzędzia, które zbudowałem. Pytania, które nie dają mi spać.</div>
+  <div class="meta">
+    <div class="tag">Marcin Jabłoński</div>
+    <div class="tag">WCTT · Politechnika Wrocławska</div>
+    <div class="een-logo-text">Enterprise Europe Network</div>
+  </div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLAJD 1 — C64
+═══════════════════════════════════════════════════════════ -->
+<section>
+<aside class="notes">
+NOTATKI PRELEGENTA — C64
+To jest osobista historia — nie wykład o historii komputerów.
+Analogia: AI dziś jest jak C64 z magnetofonem — potężne możliwości,
+ale bez pamięci operacyjnej między sesjami.
+Rozwiązanie: system snapów na Drive. Nie czekam na doskonałe narzędzie.
+Morał: nie przywiązuj się. C64 zastąpił PC. GPT zastąpi coś innego.
+</aside>
+<div class="slide-content">
+  <div class="slide-header">
+    <div class="chapter">Rozdział 1 / 8</div>
+    <h2>C64 z magnetofonem — czyli AI bez pamięci RAM</h2>
+  </div>
+  <div class="slide-body">
+    <p class="lead">Każda nowa rozmowa z AI zaczyna się od zera. Jak ładowanie kasety na C64 — bez pamięci operacyjnej, bez kontekstu, bez historii.</p>
+    <div class="two-col">
+      <div class="col-card" style="padding:14px 16px;">
+        <h3 style="margin-bottom:8px;">🖥️ C64 · 1984</h3>
+        <div class="zoom-card" onclick="openGalleryModal('images/c64.png', 'Commodore 64', event)" style="margin-bottom:10px; border-radius:6px; overflow:hidden; cursor:zoom-in;">
+          <img src="images/c64.png" alt="Commodore 64 z magnetofonikiem" style="width:100%; display:block; border-radius:4px; transition:transform 0.15s ease;">
+          <div class="caption" style="position:absolute; bottom:0; left:0; right:0; background:rgba(0,0,0,0.6); color:white; font-size:0.58em; padding:4px 8px;">Commodore 64 · noris DATA DR 1535 · QuickShot</div>
+        </div>
+        <ul style="margin:0; padding-left:14px;">
+          <li>64 KB RAM — wszystko kasowane przy wyłączeniu</li>
+          <li>Program ładowany z kasety za każdym razem od nowa</li>
+          <li>Mimo to — programowało się, tworzyło, działało</li>
+          <li>Kto to rozumiał — ten miał przewagę</li>
+        </ul>
+      </div>
+      <div class="col-card" style="padding:14px 16px;">
+        <h3 style="margin-bottom:8px;">🤖 AI · 2026</h3>
+        <div class="zoom-card" onclick="openGalleryModal('images/claude-afternoon.png', 'Claude AI - Afternoon', event)" style="margin-bottom:10px; border-radius:6px; overflow:hidden; cursor:zoom-in;">
+          <img src="images/claude-afternoon.png" alt="Claude AI - Afternoon" style="width:100%; display:block; border-radius:4px; transition:transform 0.15s ease;"></div>
+          
+          <div class="caption" style="position:absolute; bottom:0; left:0; right:0; background:rgba(0,57,114,0.75); color:white; font-size:0.58em; padding:4px 8px;">Claude Sonnet 4.6 · każda sesja zaczyna się od nowa</div>
+          </div</div>
+        </div>
+        <ul style="margin:0; padding-left:14px;">
+          <li>Każda sesja — nowy start, brak pamięci między rozmowami</li>
+          <li>Rozwiązanie: system snapów zapisywanych na Drive</li>
+          <li>Mimo ograniczeń — buduje się, automatyzuje, działa</li>
+          <li>Kto to rozumie — ten ma przewagę</li>
+        </ul>
+      </div>
+    </div>
+    <div class="highlight-box" style="margin-top:20px;">
+      <p>Nie przywiązuj się do jednego narzędzia. C64 zastąpił PC. PC zastępuje AI.<br>
+      <strong>Liczy się ciągłość myślenia — nie wierność konkretnej maszynie.</strong></p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+<!-- ═<!-- ═══════════════════════════════════════════════════════════
+     SLAJD 2 — KONTEKST AI DZIŚ
+═══════════════════════════════════════════════════════════ -->
+<section>
+<aside class="notes">
+NOTATKI PRELEGENTA — Slajd 1
+Wchodzimy od razu w meritum: gdzie jesteśmy z AI w 2026?
+Rynek się fragmentuje — nie ma jednego "najlepszego" modelu.
+Każdy model jest najlepszy w czymś innym.
+To jest fundament pod slajd o Orkiestrze.
+</aside>
+<div class="slide-content">
+  <div class="slide-header">
+    <div class="chapter">Rozdział 2 / 8</div>
+    <h2>AI w 2026 — jeden model do wszystkiego?</h2>
+  </div>
+  <div class="slide-body">
+    <p class="lead">Rynek AI fragmentuje się. Każdy model jest najlepszy w czymś innym. Wybór narzędzia ma znaczenie — jak dobór specjalisty do zadania.</p>
+
+    <style>
+      .zoom-card { position:relative; overflow:hidden; border-radius:8px; cursor:zoom-in; }
+      .zoom-card img { width:100%; display:block; border-radius:6px; transition: transform 0.15s ease; }
+      .zoom-card .caption { position:absolute; bottom:0; left:0; right:0; background:rgba(0,57,114,0.85); color:white; font-size:0.62em; padding:5px 10px; font-weight:600; }
+      .zoom-card:hover img { transform: scale(1.03); }
+
+    </style>
+    <div class="two-col" style="margin-bottom:14px;">
+      <div class="zoom-card" onclick="openGalleryModal(this.querySelector('img').src, this.querySelector('img').alt, event)">
+        <img src="images/chatbot-arena.png" alt="Chatbot Arena lmarena.ai">
+        <div class="caption">🏆 Chatbot Arena — lmarena.ai · blind comparison · miliony ocen</div>
+      </div>
+      <div class="zoom-card" onclick="openGalleryModal(this.querySelector('img').src, this.querySelector('img').alt, event)">
+        <img src="images/artificial-analysis.png" alt="Artificial Analysis">
+        <div class="caption">📊 Artificial Analysis — artificialanalysis.ai · Intelligence · Speed · Price</div>
+      </div>
+    </div>
+
+    <div style="background:#003A72; border-radius:8px; padding:14px 24px;">
+      <p style="color:white; font-size:0.82em; margin:0; line-height:1.5;">
+        Nie pytaj "który AI jest najlepszy". Pytaj: <span style="color:#7EC8FF; font-weight:600;">"najlepszy do czego?"</span><br>
+        <span style="color:rgba(255,255,255,0.6); font-size:0.88em;">To jest fundament budowania własnej orkiestry narzędzi.</span>
+      </p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═<!-- ═══════════════════════════════════════════════════════════
+     SLAJD 3 — ORKIESTRA
+═══════════════════════════════════════════════════════════ -->
+<section>
+<div class="slide-content">
+  <div class="slide-header">
+    <div class="chapter">Rozdział 3 / 8</div>
+    <h2>Czy zawsze to samo narzędzie? Orkiestra AI</h2>
+  </div>
+  <div class="slide-body">
+    <p class="lead">Jeden AI do wszystkiego to jak jeden pracownik do całej firmy. Każde narzędzie robi najlepiej to, do czego zostało zaprojektowane.</p>
+    <div class="agent-grid">
+      <div class="agent-card ac-claude">
+        <span class="emoji">🎯</span>
+        <span class="aname">Claude</span>
+        <span class="arole" style="color:#444">Strateg · Analityk<br>Orchestrator · Action Plan</span>
+      </div>
+      <div class="agent-card ac-grok">
+        <span class="emoji">🔍</span>
+        <span class="aname">Grok</span>
+        <span class="arole" style="color:#444">Data Scout<br>Czyta profile EEN z maila</span>
+      </div>
+      <div class="agent-card ac-deep">
+        <span class="emoji">✍️</span>
+        <span class="aname">DeepSeek</span>
+        <span class="arole" style="color:#444">Communications<br>Pisze spersonalizowane maile</span>
+      </div>
+      <div class="agent-card ac-perp">
+        <span class="emoji">🌐</span>
+        <span class="aname">Perplexity</span>
+        <span class="arole" style="color:#444">Domain Expert<br>Merytoryka branżowa</span>
+      </div>
+    </div>
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; margin-top:16px;">
+      <div class="col-card">
+        <h3>📋 Dziś</h3>
+        <ul>
+          <li>Claude analizuje klienta, buduje action plan</li>
+          <li>konsultant jako human orchestrator</li>
+          <li>~8h zamiast tygodnia pracy ręcznej</li>
+        </ul>
+      </div>
+      <div class="col-card">
+        <h3>🚀 Jutro</h3>
+        <ul>
+          <li>Agenty autonomiczne, konsultant zatwierdza</li>
+          <li>Audyt AI: dobór agentów do procesu</li>
+          <li>Action plan wykonywany przez system</li>
+        </ul>
+      </div>
+      <div style="background:#F0FFF4; border-radius:8px; padding:18px 16px; border-left:4px solid #276749;">
+        <h3 style="color:#276749; font-size:0.8em; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin:0 0 8px 0;">🆕 Arena.ai</h3>
+        <p style="font-size:0.72em; color:#4A5568; line-height:1.45; margin:0;">Porównuj modele blind zanim wybierzesz do zadania</p>
+        <div style="margin-top:8px; font-size:0.65em; color:#276749; font-weight:600;">→ lmarena.ai</div>
+        <div style="margin-top:4px; font-size:0.65em; color:#276749; font-weight:600;">→ artificialanalysis.ai</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═<!-- ═══════════════════════════════════════════════════════════
+     SLAJD 4 — BUDOWA PROFILU (dawny SLAJD 3)
+═══════════════════════════════════════════════════════════ -->
+<section>
+<div class="slide-content">
+  <div class="slide-header">
+    <div class="chapter">Rozdział 4 / 8</div>
+    <h2>Budowa profilu EEN — AI pomoże opracować dobry profil</h2>
+  </div>
+  <div class="slide-body">
+    <p class="lead">W prompcie są wbudowane guidelines najlepszych profili EEN. AI nie zgaduje — porównuje do wzorca i wskazuje co poprawić.</p>
+    <div class="pipeline">
+      <div class="pipe-step">
+        <span class="icon">📄</span>
+        <span class="name">Draft klienta</span>
+        <span class="desc">Surowy opis firmy i oferty</span>
+      </div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step">
+        <span class="icon">📋</span>
+        <span class="name">Guidelines EEN</span>
+        <span class="desc">Wzorce najlepszych profili wbudowane w prompt</span>
+      </div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step">
+        <span class="icon">🤖</span>
+        <span class="name">Analiza AI</span>
+        <span class="desc">Ocena jakości, luki, sugestie</span>
+      </div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step">
+        <span class="icon">✅</span>
+        <span class="name">Profil gotowy</span>
+        <span class="desc">Publikacja w sieci EEN</span>
+      </div>
+    </div>
+    <div class="two-col">
+      <div class="col-card">
+        <h3>Co sprawdza AI</h3>
+        <ul>
+          <li>Precyzja opisu produktu / usługi / technologii</li>
+          <li>Jasność kryteriów partnera którego szukamy</li>
+          <li>Odpowiednie słowa kluczowe do wyszukiwania</li>
+          <li>Zgodność z formatem EEN (NACE, keywords, type)</li>
+        </ul>
+      </div>
+      <div class="col-card">
+        <h3>Efekt</h3>
+        <ul>
+          <li>Profil który faktycznie generuje zapytania</li>
+          <li>Mniej czasu na poprawki z EISMEA</li>
+          <li>Klient widzi profesjonalną usługę, nie formularz</li>
+          <li>Wyższy wskaźnik konwersji profil → kontakt</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═<!-- ═══════════════════════════════════════════════════════════
+     SLAJD 4 — EEN MATCHER
+═══════════════════════════════════════════════════════════ -->
+<section>
+<div class="slide-content">
+  <div class="slide-header">
+    <div class="chapter">Rozdział 5 / 8</div>
+    <h2>EEN Matcher — robot który dopasowuje potencjalnych klientów do wyselekcjonowanych profili - najlepszych dla specyfiki regionu</h2>
+  </div>
+  <div class="slide-body">
+    <div class="pipeline" style="margin-bottom:16px;">
+      <div class="pipe-step">
+        <span class="icon">📧</span>
+        <span class="name">Mail EEN</span>
+        <span class="desc">Nowy profil z sieci</span>
+      </div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step">
+        <span class="icon">⚙️</span>
+        <span class="name">GitHub Actions</span>
+        <span class="desc">Odczytuje Gmail automatycznie</span>
+      </div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step">
+        <span class="icon">🔍</span>
+        <span class="name">Grok</span>
+        <span class="desc">Matchuje do firm Dolny Śląsk / Opolszczyzna</span>
+      </div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step">
+        <span class="icon">📊</span>
+        <span class="name">Raport</span>
+        <span class="desc">Top 5 firm + kontakty na mail służbowy</span>
+      </div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step">
+        <span class="icon">✍️</span>
+        <span class="name">DeepSeek</span>
+        <span class="desc">Pisze maile do firm z którymi nie miałem kontaktu</span>
+      </div>
+    </div>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Priorytet</th>
+          <th>Firma</th>
+          <th>Lokalizacja</th>
+          <th>Komentarz AI</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="badge">1</span></td>
+          <td><strong>Pako-Box Sp. z o.o.</strong></td>
+          <td>Wrocław</td>
+          <td>Specjalista od sztywnych pudełek premium, doświadczenie z markami luksusowymi</td>
+        </tr>
+        <tr>
+          <td><span class="badge">2</span></td>
+          <td><strong>Opakowania Premium S.A.</strong></td>
+          <td>Opole</td>
+          <td>Duży producent z działem montażu manualnego</td>
+        </tr>
+        <tr>
+          <td><span class="badge">3</span></td>
+          <td><strong>Kartonex Dolny Śląsk</strong></td>
+          <td>Legnica</td>
+          <td>Nowoczesna linia do produkcji i montażu pudełek sztywnych</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="small" style="margin-top:10px;">↑ Przykład: profil francuskiej firmy szukającej partnera do montażu luksusowych pudełek kartonowych → raport gotowy w minutach</div>
+    <div class="screen-gallery" style="margin-top:18px;">
+      <div style="font-size:0.72em; color:#4A5568; font-weight:600; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.05em;">Jak to działa w praktyce</div>
+      <div class="gallery-grid" style="display:grid; grid-template-columns:repeat(4,1fr); gap:8px;">
+        <img src="images/Przechwytywanie1.JPG" class="gallery-thumb" alt="Screen 1" onclick="openGalleryModal(this.src, this.alt, event)">
+        <img src="images/Przechwytywanie2.jpg" class="gallery-thumb" alt="Screen 2" onclick="openGalleryModal(this.src, this.alt, event)">
+        <img src="images/Przechwytywanie3.JPG" class="gallery-thumb" alt="Screen 3" onclick="openGalleryModal(this.src, this.alt, event)">
+        <img src="images/Przechwytywanie4.JPG" class="gallery-thumb" alt="Screen 4" onclick="openGalleryModal(this.src, this.alt, event)">
+        <img src="images/Przechwytywanie5.JPG" class="gallery-thumb" alt="Screen 5" onclick="openGalleryModal(this.src, this.alt, event)">
+        <img src="images/Przechwytywanie6.JPG" class="gallery-thumb" alt="Screen 6" onclick="openGalleryModal(this.src, this.alt, event)">
+        <img src="images/Przechwytywanie7-1.JPG" class="gallery-thumb" alt="Screen 7a" onclick="openGalleryModal(this.src, this.alt, event)">
+        <img src="images/Przechwytywanie7-2.JPG" class="gallery-thumb" alt="Screen 7b" onclick="openGalleryModal(this.src, this.alt, event)">
+      </div>
+    </div>
+
+    <!-- Modal zoom -->
+    <div id="galleryModal" onclick="closeGalleryModal()" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.88); z-index:99999; align-items:center; justify-content:center; cursor:zoom-out;">
+      <img id="galleryModalImg" src="" style="max-width:90vw; max-height:88vh; border-radius:6px; box-shadow:0 8px 40px rgba(0,0,0,0.6);">
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- ═<!-- ═══════════════════════════════════════════════════════════
+     SLAJD 4b — B2MATCH / SPOTKANIA BROKERSKIE
+═══════════════════════════════════════════════════════════ -->
+<section>
+<aside class="notes">
+NOTATKI PRELEGENTA — Slajd B2Match / FireUp
+FireUp — polska firma IT, sektor medyczny. IHD 2026 Wiedeń. 377 uczestników.
+1. Profil na B2Match zbudowany z klientem (call + AI guidelines)
+2. AI przeanalizował 377 uczestników → Tier 1/2/3
+3. Tier 1: 20 startupów digital health, Tier 2: 13 partnerów, Tier 3: Polacy
+4. Strategia spotkań dla Jarosława Szczotki i Jakuba Bieleckiego
+Zakwalifikowane jako jedno pełne zaangażowanie KPI2. Mail do Lucy.
+NIE MÓWIĆ WPROST o "ciecia" — slajd mówi sam za siebie.
+</aside>
+<div class="slide-content">
+  <div class="slide-header">
+    <div class="chapter">Rozdział 5b / 8</div>
+    <h2>Spotkania brokerskie — jakość czy ilość?</h2>
+  </div>
+  <div class="slide-body" style="padding-top:24px;">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:20px;">
+      <div style="background:#FFF5F5; border-top:4px solid #E53E3E; border-radius:8px; padding:20px 22px;">
+        <div style="font-size:0.72em; font-weight:700; color:#C53030; text-transform:uppercase; letter-spacing:1px; margin-bottom:12px;">Podejście ilościowe — pozostałości po POKL?</div>
+        <ul style="margin:0; padding-left:16px;">
+          <li style="color:#742A2A; font-size:0.78em; margin-bottom:8px;">Liczba klientów na brokerze = liczba usług zaawansowanych</li>
+          <li style="color:#742A2A; font-size:0.78em; margin-bottom:8px;">Klient zapisany = klient obsłużony</li>
+          <li style="color:#742A2A; font-size:0.78em; margin-bottom:8px;">KPI: ile osób przyszło na spotkanie</li>
+          <li style="color:#742A2A; font-size:0.78em;">Sukces: ptaszek w tabeli</li>
+        </ul>
+      </div>
+      <div style="background:#E8F2FF; border-top:4px solid #0057A8; border-radius:8px; padding:20px 22px;">
+        <div style="font-size:0.72em; font-weight:700; color:#003A72; text-transform:uppercase; letter-spacing:1px; margin-bottom:12px;">Podejście jakościowe — jedna usługa zaawansowana</div>
+        <ul style="margin:0; padding-left:16px;">
+          <li style="color:#1A1A2E; font-size:0.78em; margin-bottom:8px;"><strong>Przemyślany profil na B2Match</strong> — zanim klient wejdzie na event</li>
+          <li style="color:#1A1A2E; font-size:0.78em; margin-bottom:8px;"><strong>377 uczestników przeanalizowanych przez AI</strong> — Tier 1 / 2 / 3</li>
+          <li style="color:#1A1A2E; font-size:0.78em; margin-bottom:8px;"><strong>Shortlista z uzasadnieniem</strong> dla każdego kontaktu</li>
+          <li style="color:#1A1A2E; font-size:0.78em;"><strong>Strategia spotkań</strong> skrojona pod firmę i event</li>
+        </ul>
+      </div>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:16px;">
+      <div style="background:#E8F2FF; border-radius:6px; padding:12px 14px; text-align:center;">
+        <div style="color:#0057A8; font-size:1.6em; font-weight:800;">377</div>
+        <div style="color:#4A5568; font-size:0.62em; margin-top:3px;">uczestników<br>przeanalizowanych</div>
+      </div>
+      <div style="background:#E8F2FF; border-radius:6px; padding:12px 14px; text-align:center;">
+        <div style="color:#0057A8; font-size:1.6em; font-weight:800;">3 tiery</div>
+        <div style="color:#4A5568; font-size:0.62em; margin-top:3px;">priorytetyzacja<br>kontaktów</div>
+      </div>
+      <div style="background:#E8F2FF; border-radius:6px; padding:12px 14px; text-align:center;">
+        <div style="color:#0057A8; font-size:1.6em; font-weight:800;">1 KPI2</div>
+        <div style="color:#4A5568; font-size:0.62em; margin-top:3px;">jedno pełne<br>zaangażowanie</div>
+      </div>
+    </div>
+    <div style="background:#003A72; border-radius:8px; padding:14px 24px;">
+      <p style="color:white; font-size:0.82em; margin:0; line-height:1.5;">
+        Ile jest warta usługa zaawansowana, która zmienia wynik klienta na evencie?<br>
+        <span style="color:#7EC8FF; font-weight:600;">To jest pytanie o jakość — nie o liczbę ptaszków w tabeli.</span>
+      </p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═<!-- ═══════════════════════════════════════════════════════════
+     SLAJD 5 — RAPORTY
+═══════════════════════════════════════════════════════════ -->
+<section>
+<div class="slide-content">
+  <div class="slide-header">
+    <div class="chapter">Rozdział 6 / 8</div>
+    <h2>Raporty merytoryczne — intelligence brief co tydzień</h2>
+  </div>
+  <div class="slide-body">
+    <p class="lead">Automatyczne raporty branżowe generowane przez GitHub Actions każdego czwartku o 8:00. Klient nie dostaje newslettera — dostaje wywiad gospodarczy skrojony pod jego firmę.</p>
+    <div class="stat-row">
+      <div class="stat-box">
+        <span class="num">~$0.20</span>
+        <span class="label">koszt jednego raportu<br>(Claude API)</span>
+      </div>
+      <div class="stat-box">
+        <span class="num">8h→45min</span>
+        <span class="label">czas analizy rynku<br>z AI vs bez AI</span>
+      </div>
+      <div class="stat-box">
+        <span class="num">4</span>
+        <span class="label">aktywne raporty<br>tygodniowe</span>
+      </div>
+    </div>
+    <div class="two-col">
+      <div class="col-card">
+        <h3>🚀 Space & Defence Brief</h3>
+        <ul>
+          <li>Cotygodniowy intelligence brief dla TG Space</li>
+          <li>Kursy spółek (RKLB, CRI, SCW) + analiza implikacji dla MŚP</li>
+          <li>Sekcja "Kąt dla klienta" — gotowa do forward'owania</li>
+        </ul>
+      </div>
+      <div class="col-card">
+        <h3>🌿 NbS Monitor / EIC Brief</h3>
+        <ul>
+          <li>Nature-based Solutions — rynek $1.3T do 2030</li>
+          <li>EIC Accelerator — okna aplikacyjne, zmiany programu</li>
+          <li>Raport Skylight — "wywiad przez lustro" dla klienta premium</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote-block" style="margin-top:16px;">
+      <p>"To nie jest newsletter. To jest wywiad gospodarczy skrojony pod pana firmę."</p>
+      <span class="source">— propozycja wartości dla klientów EEN korzystających z raportów AI</span>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═<!-- ═══════════════════════════════════════════════════════════
+     SLAJD 5b — CASE STUDY PRASMET
+═══════════════════════════════════════════════════════════ -->
+<section>
+<aside class="notes">
+NOTATKI PRELEGENTA — Slajd Prasmet
+
+Bartłomiej Bieniasz, CEO Prasmet Świdnica. Znajomość ponad 7 lat — nie projekt, nie jednorazowy kontakt. Relacja która ewoluuje co roku coraz większymi zamówieniami, aż w końcu nową linią produkcyjną postawioną pod kontrakt z Tobiasem Kleinem (partner z Niemiec pozyskany przez EEN).
+
+7 sztuk złych na 200 000 — dla Bartłomieja to wyzwanie egzystencjalne. Mówimy: doprowadzimy to do zera. Nie "pracujemy nad jakością" — zero. To jest język człowieka który buduje wiarygodność latami, nie jednorazowymi strzałami.
+
+Spotkanie 22 maja w siedzibie Prasmet. Kiedyś uczestnik projektu EIMC — zarządzanie innowacjami, metodologia, wspólna beczka soli. Dziś fabryka przyszłości — AI w każdym procesie, na każdym poziomie zarządzania. Cztery agenty równolegle. Harmonogramy maszyn CNC pod kontrolą AI.
+
+7 godzin razem nad priorytetyzacją dostępów AI i raportów dla poszczególnych poziomów zarządzania — kierownik zmiany widzi co innego niż dyrektor produkcji, a CEO widzi całość. Rozeszliśmy się z niedosytem — rozmowa była fascynująca.
+
+PUENTA do powiedzenia na żywo:
+"Kiedyś rozmawialiśmy o tym jak wejść na rynek europejski. Dziś rozmawiamy o tym jak AI zarządza fabryką. Ta sama relacja — zupełnie inny świat. I to właśnie jest pytanie dla nas wszystkich — czy jesteśmy gotowi na takiego klienta?"
+</aside>
+<div style="background: #0A1428; height:100vh; display:flex !important; flex-direction:column; justify-content:center; padding: 52px 72px; box-sizing:border-box;">
+
+  <div style="color:rgba(255,255,255,0.4); font-size:0.6em; letter-spacing:3px; text-transform:uppercase; margin-bottom:14px;">
+    Case Study · Prasmet Świdnica · 7 lat relacji
+  </div>
+
+  <div style="color:#7EC8FF; font-size:1.45em; font-weight:700; line-height:1.25; margin-bottom:28px; max-width:90%;">
+    Kiedyś rozmawialiśmy o wejściu na rynek europejski.<br>Dziś rozmawiamy o tym jak AI zarządza fabryką.
+  </div>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:20px;">
+    <div style="border-left:3px solid rgba(255,255,255,0.2); padding-left:18px;">
+      <div style="color:rgba(255,255,255,0.4); font-size:0.58em; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px;">Fundament · EEN + EIMC</div>
+      <p style="color:rgba(255,255,255,0.78); font-size:0.78em; line-height:1.6; margin:0;">
+        PA podpisane 7 lat temu. Każdy rok — większe zamówienia. W końcu nowa linia produkcyjna pod kontrakt z partnerem z Niemiec pozyskanym przez EEN.<br><br>
+        Projekt EIMC — zarządzanie innowacjami. Wspólna beczka soli. Metodologia którą zbudowaliśmy razem stała się fundamentem tego co dziś.
+      </p>
+    </div>
+    <div style="border-left:3px solid #7EC8FF; padding-left:18px;">
+      <div style="color:#7EC8FF; font-size:0.58em; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px;">Dziś · Fabryka przyszłości</div>
+      <p style="color:rgba(255,255,255,0.78); font-size:0.78em; line-height:1.6; margin:0;">
+        4 agenty AI równolegle. Harmonogramy maszyn CNC pod kontrolą AI. Każdy poziom zarządzania — inny dostęp do raportów AI.<br><br>
+        <span style="color:#7EC8FF; font-weight:600;">7 sztuk złych na 200 000 — cel: zero.</span><br>
+        Spotkanie 22.05 — 7 godzin, rozstaliśmy się z niedosytem.
+      </p>
+    </div>
+  </div>
+
+  <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:18px;">
+    <div style="background:rgba(255,255,255,0.05); border-radius:6px; padding:12px 14px; text-align:center;">
+      <div style="color:#7EC8FF; font-size:1.5em; font-weight:800;">7 lat</div>
+      <div style="color:rgba(255,255,255,0.5); font-size:0.62em; margin-top:3px;">relacja która rośnie<br>co roku</div>
+    </div>
+    <div style="background:rgba(255,255,255,0.05); border-radius:6px; padding:12px 14px; text-align:center;">
+      <div style="color:#7EC8FF; font-size:1.5em; font-weight:800;">4 AI</div>
+      <div style="color:rgba(255,255,255,0.5); font-size:0.62em; margin-top:3px;">równolegle<br>w każdym procesie</div>
+    </div>
+    <div style="background:rgba(255,255,255,0.05); border-radius:6px; padding:12px 14px; text-align:center;">
+      <div style="color:#7EC8FF; font-size:1.5em; font-weight:800;">7h</div>
+      <div style="color:rgba(255,255,255,0.5); font-size:0.62em; margin-top:3px;">ostatnie spotkanie —<br>rozeszliśmy się z niedosytem</div>
+    </div>
+  </div>
+
+  <div style="background:rgba(126,200,255,0.07); border:1px solid rgba(126,200,255,0.2); border-radius:7px; padding:14px 22px;">
+    <p style="color:rgba(255,255,255,0.55); font-size:0.72em; line-height:1.55; margin:0; font-style:italic;">
+      Ta sama relacja — zupełnie inny świat. Czy jesteśmy gotowi rozmawiać z takim klientem jak równy z równym?
+    </p>
+  </div>
+
+</div>
+</section>
+
+<!-- ═<!-- ═══════════════════════════════════════════════════════════
+     SLAJD 6 — PYTANIE KOŃCOWE
+═══════════════════════════════════════════════════════════ -->
+<section>
+<div class="slide-dark">
+  <div class="chapter">Rozdział 7 / 8 · Pytanie otwarte</div>
+  <h2>Czy będziemy rozmawiali z naszymi klientami jak równy z równym?</h2>
+  <p style="margin-bottom:24px;">Bartłomiej Bieniasz, CEO Prasmet — klient EEN od 7 lat — wdrożył AI we wszystkich procesach zarządzania firmą. Podczas ostatniej wizyty rozmawialiśmy z nim przez całą zmianę dokonując istotnych zmian w strukturze generowanych raportów z produkcji.</p>
+  <p style="margin-bottom:24px; color: rgba(255,255,255,0.65);">Za 2-3 lata każdy ambitny klient MŚP będzie miał AI w produkcji, sprzedaży, logistyce, finansach. Przyjdzie do nas po pomoc w internacjonalizacji — i zapyta czego nie potrafi zapytać chatbota.</p>
+  <div style="background: rgba(126,200,255,0.12); border: 1px solid rgba(126,200,255,0.3); border-radius:8px; padding: 20px 28px; margin-top: 8px;">
+    <p style="color: #7EC8FF; font-weight: 700; font-size: 1em; margin-bottom:8px !important;">Jeśli nie rozumiemy AI kompleksowo — nie będziemy partnerami. Będziemy tylko wypełniaczami formularzy.</p>
+    <p style="color: rgba(255,255,255,0.6); font-size:0.78em;">Dlatego proponuję: krajowa grupa robocza AI w polskim EEN.<br>Nie żeby śledzić trendy — żeby przeżyć jako instytucja i budować razem narzędzia które każdy z nas potrzebuje.</p>
+  </div>
+</div>
+</section>
+
+<!-- ═<!-- ═══════════════════════════════════════════════════════════
+     SLAJD 6b — ZAWODY ASYSTENTA PRZYSZŁOŚCI
+═══════════════════════════════════════════════════════════ -->
+<section>
+<aside class="notes">
+NOTATKI PRELEGENTA — Asystent Przyszłości
+Chirurg: robot operuje z dokładnością do mikrona, człowiek podaje narzędzia.
+Tokarz CNC (jak u Prasmeta!): humanoid kalibruje idealnie, człowiek zamiata wióry.
+Programista: AI pisze kod w milisekundy, człowiek restartuje routery.
+Saper: robot rozbraja, człowiek stoi 500m z walizką.
+PUENTA: A konsultant EEN? Być orkiestrantem, nie instrumentem.
+</aside>
+<div style="background:#FFFFFF; height:100vh; display:flex !important; flex-direction:column; box-sizing:border-box; overflow:hidden;">
+<div style="background:#0057A8; padding:22px 60px; flex-shrink:0;">
+<div style="color:rgba(255,255,255,0.6); font-size:0.62em; letter-spacing:2.5px; text-transform:uppercase; margin-bottom:4px;">Rozdział 8 / 8 · Prowokacja</div>
+<h2 style="color:white; font-size:1.35em; font-weight:700; margin:0; text-shadow:none;">Zawody asystenta przyszłości 🤖</h2>
+</div>
+<div style="flex:1; padding:28px 60px; display:flex; flex-direction:column; justify-content:center;">
+<p style="font-size:0.88em; color:#4A5568; line-height:1.5; margin-bottom:20px !important;">Wchodzimy w erę w której humanoidalne roboty przejmą rolę <strong style="color:#0057A8;">głównego eksperta</strong>. Człowiek zostanie zdegradowany do roli <strong style="color:#E53E3E;">asystenta dbającego o komfort robota.</strong></p>
+<div style="display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:20px;">
+<div style="background:#EBF4FF; border-top:3px solid #0057A8; border-radius:6px; padding:14px 12px;"><div style="font-size:1.4em; margin-bottom:6px;">🏥</div><div style="font-size:0.72em; font-weight:700; color:#0057A8; margin-bottom:5px;">Medycyna</div><div style="font-size:0.65em; color:#4A5568; line-height:1.4;">Chirurg: robot operuje z dokładnością do mikrona.<br><em>Człowiek podaje narzędzia.</em></div></div>
+<div style="background:#EBF4FF; border-top:3px solid #0057A8; border-radius:6px; padding:14px 12px;"><div style="font-size:1.4em; margin-bottom:6px;">🏭</div><div style="font-size:0.72em; font-weight:700; color:#0057A8; margin-bottom:5px;">Przemysł CNC</div><div style="font-size:0.65em; color:#4A5568; line-height:1.4;">Humanoid kalibruje i obrabia materiał idealnie.<br><em>Człowiek zamiata wióry.</em></div></div>
+<div style="background:#EBF4FF; border-top:3px solid #0057A8; border-radius:6px; padding:14px 12px;"><div style="font-size:1.4em; margin-bottom:6px;">💻</div><div style="font-size:0.72em; font-weight:700; color:#0057A8; margin-bottom:5px;">Programowanie</div><div style="font-size:0.65em; color:#4A5568; line-height:1.4;">AI pisze kod w milisekundy.<br><em>Człowiek restartuje routery.</em></div></div>
+<div style="background:#EBF4FF; border-top:3px solid #0057A8; border-radius:6px; padding:14px 12px;"><div style="font-size:1.4em; margin-bottom:6px;">💣</div><div style="font-size:0.72em; font-weight:700; color:#0057A8; margin-bottom:5px;">Saper</div><div style="font-size:0.65em; color:#4A5568; line-height:1.4;">Robot rozbraja bombę z precyzją.<br><em>Człowiek stoi 500m z walizką.</em></div></div>
+</div>
+<div style="background:#FFF5F5; border:1px solid #FED7D7; border-radius:8px; padding:16px 22px; margin-bottom:14px;"><p style="font-size:0.82em; color:#742A2A; margin:0; line-height:1.5;"><strong>A konsultant EEN?</strong> Dziś matchujesz ręcznie. Jutro robot zmatchuje lepiej, szybciej, taniej — i napisze mail sam.<br><span style="color:#C53030; font-weight:600;">Pytanie nie brzmi: czy to nastąpi. Brzmi: po której stronie będziesz stać.</span></p></div>
+<div style="background:#E8F2FF; border-left:4px solid #0057A8; border-radius:0 6px 6px 0; padding:12px 18px;"><p style="font-size:0.76em; color:#0057A8; margin:0; font-weight:600;">Jedyna odpowiedź: rozumieć AI kompleksowo. Być orkiestrantem — nie instrumentem.</p></div>
+</div>
+</div>
+</section>
+
+<!-- ═<!-- ═══════════════════════════════════════════════════════════
+     SLAJD 7 — CLOSING
+═══════════════════════════════════════════════════════════ -->
+<section>
+<div class="slide-closing">
+  <div class="big-q">
+    Kto chce <span>budować to razem?</span>
+  </div>
+  <div class="sub">
+    Każda specjalizacja EEN — matchmaking, A2F, Research, Digitalization — może mieć swoje narzędzie AI.<br>
+    Zbudujmy sieć agentów zanim ktoś zbuduje ją bez nas.
+  </div>
+  <div class="cta">
+    Marcin Jabłoński · WCTT Wrocław<br>
+    <span style="color:#7EC8FF; font-size:0.9em;">Enterprise Europe Network · WestPoland</span>
+  </div>
+</div>
+</section>
+
+</div><!-- /slides -->
+</div><!-- /reveal -->
+
+<script src="node_modules/reveal.js/dist/reveal.js"></script>
+<script src="node_modules/reveal.js/plugin/notes/notes.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    slideNumber: 'c/t',
+    progress: true,
+    transition: 'slide',
+    transitionSpeed: 'default',
+    backgroundTransition: 'fade',
+    controls: true,
+    controlsTutorial: false,
+    center: false,
+    margin: 0,
+    width: 1280,
+    height: 720,
+    plugins: [RevealNotes]
+  });
+</script>
+<script>
+    function openGalleryModal(src, alt, e) {
+      if (e) { e.stopPropagation(); e.preventDefault(); }
+      const modal = document.getElementById('galleryModal');
+      document.getElementById('galleryModalImg').src = src;
+      modal.style.display = 'flex';
+    }
+    function closeGalleryModal() {
+      document.getElementById('galleryModal').style.display = 'none';
+    }
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeGalleryModal();
+    });
+    // Blokuj Reveal.js przed obsługą kliknięć na elementach zoom
+    document.addEventListener('click', function(e) {
+      if (e.target.closest('.zoom-card') || e.target.closest('.gallery-thumb')) {
+        e.stopPropagation();
+      }
+    }, true);
+</script>
+</body>
+</html>
