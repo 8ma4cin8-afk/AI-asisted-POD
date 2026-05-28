@@ -599,11 +599,22 @@ PUENTA: A konsultant EEN? Być orkiestrantem, nie instrumentem.
 <script>
   function openGalleryModal(src, alt, e) {
     if (e) { e.stopPropagation(); e.preventDefault(); }
-    const modal = document.getElementById('galleryModal');
-    document.getElementById('galleryModalImg').src = src;
-    modal.style.display = 'flex';
+    // Utwórz overlay bezpośrednio na document.body omijając transform Reveal.js
+    var existing = document.getElementById('zoomOverlay');
+    if (existing) existing.remove();
+    var overlay = document.createElement('div');
+    overlay.id = 'zoomOverlay';
+    overlay.onclick = function() { overlay.remove(); };
+    overlay.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.88);z-index:999999;display:flex;align-items:center;justify-content:center;cursor:zoom-out;';
+    var img = document.createElement('img');
+    img.src = src;
+    img.style.cssText = 'max-width:90vw;max-height:90vh;border-radius:6px;box-shadow:0 8px 40px rgba(0,0,0,0.6);';
+    overlay.appendChild(img);
+    document.body.appendChild(overlay);
   }
   function closeGalleryModal() {
+    var overlay = document.getElementById('zoomOverlay');
+    if (overlay) overlay.remove();
     document.getElementById('galleryModal').style.display = 'none';
   }
   document.addEventListener('keydown', function(e) {
