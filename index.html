@@ -102,6 +102,18 @@
 
   .reveal .progress { height: 4px !important; }
   .reveal .slide-number { bottom: 8px; right: 12px; }
+
+  /* Nadpisz pointer-events Reveal.js na obrazkach z zoomem */
+  .reveal .slides img[onclick],
+  .reveal .slides img.gallery-thumb {
+    pointer-events: all !important;
+    cursor: zoom-in !important;
+    position: relative;
+    z-index: 10;
+  }
+  #galleryModal {
+    pointer-events: all !important;
+  }
 </style>
 </head>
 <body>
@@ -597,15 +609,12 @@ PUENTA: A konsultant EEN? Być orkiestrantem, nie instrumentem.
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') closeGalleryModal();
   });
-  // Blokuj Reveal.js przed obsługą kliknięć na obrazkach z zoomem
-  ['mousedown','mouseup','click'].forEach(function(evtName) {
-    document.addEventListener(evtName, function(e) {
-      const t = e.target;
-      if (t.tagName === 'IMG' && (t.hasAttribute('onclick') || t.classList.contains('gallery-thumb'))) {
-        e.stopImmediatePropagation();
-        e.stopPropagation();
-      }
-    }, true);
+  // Podpnij zoom przez addEventListener po załadowaniu Reveal
+  Reveal.on('ready', function() {
+    document.querySelectorAll('img[onclick], img.gallery-thumb').forEach(function(img) {
+      img.style.pointerEvents = 'all';
+      img.style.cursor = 'zoom-in';
+    });
   });
 </script>
 <div id="galleryModal" onclick="closeGalleryModal()" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.88); z-index:99999; align-items:center; justify-content:center; cursor:zoom-out;">
