@@ -368,16 +368,16 @@ To jest fundament pod slajd o Orkiestrze.
       <div style="font-size:0.72em; color:#4A5568; font-weight:600; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.05em;">Jak to działa w praktyce</div>
       <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px;">
         <div style="text-align:center;">
-          <img src="images/Profilesquery-Wszystko.gif" class="gallery-thumb" alt="Profiles query - Wszystko" onclick="openGalleryModal(this.src, this.alt, event)" style="width:100%; border-radius:6px; cursor:zoom-in;">
+          <img src="images/Profilesquery-Wszystko.gif" class="gallery-thumb gif-paused" alt="Profiles query - Wszystko" onclick="handleGifClick(this, event)" style="width:100%; border-radius:6px; cursor:pointer;">
           <div style="font-size:0.62em; color:#4A5568; margin-top:4px;">Profiles query — Wszystko</div>
         </div>
         <div style="text-align:center;">
-          <img src="images/matchowanie-polautomat.gif" class="gallery-thumb" alt="Matchowanie półautomat" onclick="openGalleryModal(this.src, this.alt, event)" style="width:100%; border-radius:6px; cursor:zoom-in;">
-          <div style="font-size:0.62em; color:#4A5568; margin-top:4px;">Matchowanie — półautomat</div>
+          <img src="images/prompt_matchowanie.gif" class="gallery-thumb gif-paused" alt="Prompt matchowanie" onclick="handleGifClick(this, event)" style="width:100%; border-radius:6px; cursor:pointer;">
+          <div style="font-size:0.62em; color:#4A5568; margin-top:4px;">Prompt — matchowanie</div>
         </div>
         <div style="text-align:center;">
-          <img src="images/prompt_matchowanie.gif" class="gallery-thumb" alt="Prompt matchowanie" onclick="openGalleryModal(this.src, this.alt, event)" style="width:100%; border-radius:6px; cursor:zoom-in;">
-          <div style="font-size:0.62em; color:#4A5568; margin-top:4px;">Prompt — matchowanie</div>
+          <img src="images/matchowanie-polautomat.gif" class="gallery-thumb gif-paused" alt="Matchowanie półautomat" onclick="handleGifClick(this, event)" style="width:100%; border-radius:6px; cursor:pointer;">
+          <div style="font-size:0.62em; color:#4A5568; margin-top:4px;">Matchowanie — półautomat</div>
         </div>
       </div>
     </div>
@@ -631,6 +631,48 @@ PUENTA: A konsultant EEN? Być orkiestrantem, nie instrumentem.
       img.style.cursor = 'zoom-in';
     });
   });
+
+  // Click-to-play GIFy
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.gif-paused').forEach(function(img) {
+      var gifSrc = img.src;
+      var placeholder = gifSrc.replace(/\.gif$/i, '_thumb.jpg');
+      img.dataset.gif = gifSrc;
+      img.dataset.playing = 'false';
+      // Zamień na statyczny przez dodanie parametru cache-buster który zatrzymuje GIF
+      // Technika: użyj canvas do wyciągnięcia pierwszego frame
+      var canvas = document.createElement('canvas');
+      var ctx = canvas.getContext('2d');
+      var tempImg = new Image();
+      tempImg.crossOrigin = 'anonymous';
+      tempImg.onload = function() {
+        canvas.width = tempImg.width;
+        canvas.height = tempImg.height;
+        ctx.drawImage(tempImg, 0, 0);
+        img.src = canvas.toDataURL('image/png');
+        img.dataset.static = img.src;
+      };
+      tempImg.onerror = function() {
+        // Jeśli canvas nie zadziała (CORS), zostaw GIF ale dodaj overlay
+        img.dataset.static = gifSrc;
+      };
+      tempImg.src = gifSrc + '?frame=0&t=' + Date.now();
+    });
+  });
+
+  function handleGifClick(img, event) {
+    if (event) { event.stopPropagation(); event.preventDefault(); }
+    if (img.dataset.playing === 'true') {
+      // Otwórz zoom
+      openGalleryModal(img.dataset.gif || img.src, img.alt, event);
+    } else {
+      // Uruchom GIF
+      img.src = (img.dataset.gif || img.src) + '?t=' + Date.now();
+      img.dataset.playing = 'true';
+      img.style.cursor = 'zoom-in';
+      img.title = 'Kliknij ponownie aby powiększyć';
+    }
+  }
 </script>
 <div id="galleryModal" onclick="closeGalleryModal()" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.88); z-index:99999; align-items:center; justify-content:center; cursor:zoom-out;">
   <img id="galleryModalImg" src="" style="max-width:90vw; max-height:88vh; border-radius:6px; box-shadow:0 8px 40px rgba(0,0,0,0.6);">
