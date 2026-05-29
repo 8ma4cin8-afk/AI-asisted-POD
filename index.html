@@ -114,6 +114,18 @@
   #galleryModal {
     pointer-events: all !important;
   }
+
+  .slide-header {
+    position: relative;
+  }
+  .slide-header-logo {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 36px;
+    opacity: 0.92;
+  }
 </style>
 </head>
 <body>
@@ -148,6 +160,7 @@ Morał: nie przywiązuj się. C64 zastąpił PC. GPT zastąpi coś innego.
   <div class="slide-header">
     <div class="chapter">Rozdział 1 / 8</div>
     <h2>C64 z magnetofonem — czyli AI bez pamięci RAM</h2>
+    <img src="images/Belka-EEN-WCTT-PL.png" class="slide-header-logo" alt="WCTT EEN">
   </div>
   <div class="slide-body">
     <p class="lead">Każda nowa rozmowa z AI zaczyna się od zera. Jak ładowanie kasety na C64 — bez pamięci operacyjnej, bez kontekstu, bez historii.</p>
@@ -201,6 +214,7 @@ To jest fundament pod slajd o Orkiestrze.
   <div class="slide-header">
     <div class="chapter">Rozdział 2 / 8</div>
     <h2>AI w 2026 — jeden model do wszystkiego?</h2>
+    <img src="images/Belka-EEN-WCTT-PL.png" class="slide-header-logo" alt="WCTT EEN">
   </div>
   <div class="slide-body">
     <p class="lead">Rynek AI fragmentuje się. Każdy model jest najlepszy w czymś innym. Wybór narzędzia ma znaczenie — jak dobór specjalisty do zadania.</p>
@@ -247,6 +261,7 @@ To jest fundament pod slajd o Orkiestrze.
   <div class="slide-header">
     <div class="chapter">Rozdział 3 / 8</div>
     <h2>Czy zawsze to samo narzędzie? Orkiestra AI</h2>
+    <img src="images/Belka-EEN-WCTT-PL.png" class="slide-header-logo" alt="WCTT EEN">
   </div>
   <div class="slide-body" style="padding:24px 60px; justify-content:space-between;">
     <p class="lead" style="margin-bottom:16px !important;">Jeden AI do wszystkiego to jak jeden pracownik do całej firmy. Każde narzędzie robi najlepiej to, do czego zostało zaprojektowane.</p>
@@ -327,37 +342,47 @@ To jest fundament pod slajd o Orkiestrze.
   <div class="slide-header">
     <div class="chapter">Rozdział 4 / 8</div>
     <h2>Budowa profilu EEN — AI pomoże opracować dobry profil</h2>
+    <img src="images/Belka-EEN-WCTT-PL.png" class="slide-header-logo" alt="WCTT EEN">
   </div>
-  <div class="slide-body">
-    <p class="lead">W prompcie są wbudowane guidelines najlepszych profili EEN. AI nie zgaduje — porównuje do wzorca i wskazuje co poprawić.</p>
-    <div class="pipeline">
-      <div class="pipe-step"><span class="icon">📄</span><span class="name">Draft klienta</span><span class="desc">Surowy opis firmy i oferty</span></div>
-      <div class="pipe-arrow">→</div>
-      <div class="pipe-step"><span class="icon">📋</span><span class="name">Guidelines EEN</span><span class="desc">Wzorce najlepszych profili wbudowane w prompt</span></div>
-      <div class="pipe-arrow">→</div>
-      <div class="pipe-step"><span class="icon">🤖</span><span class="name">Analiza AI</span><span class="desc">Ocena jakości, luki, sugestie</span></div>
-      <div class="pipe-arrow">→</div>
-      <div class="pipe-step"><span class="icon">✅</span><span class="name">Profil gotowy</span><span class="desc">Publikacja w sieci EEN</span></div>
+  <div class="slide-body" style="padding:16px 60px; justify-content:space-between;">
+    <div>
+      <p class="lead" style="margin-bottom:10px !important;">W prompcie są wbudowane guidelines najlepszych profili EEN. AI nie zgaduje — porównuje do wzorca i wskazuje co poprawić.</p>
+      <div class="pipeline" style="margin:8px 0;">
+        <div class="pipe-step"><span class="icon">📄</span><span class="name">Draft klienta</span><span class="desc">Surowy opis firmy i oferty</span></div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-step"><span class="icon">📋</span><span class="name">Guidelines EEN</span><span class="desc">Wzorce najlepszych profili wbudowane w prompt</span></div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-step"><span class="icon">🤖</span><span class="name">Analiza AI</span><span class="desc">Ocena jakości, luki, sugestie</span></div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-step"><span class="icon">✅</span><span class="name">Profil gotowy</span><span class="desc">Publikacja w sieci EEN</span></div>
+      </div>
+      <div class="two-col" style="margin-top:8px;">
+        <div class="col-card">
+          <h3>Co sprawdza AI</h3>
+          <ul>
+            <li>Precyzja opisu produktu / usługi / technologii</li>
+            <li>Jasność kryteriów partnera którego szukamy</li>
+            <li>Odpowiednie słowa kluczowe do wyszukiwania</li>
+            <li>Zgodność z POD Guidelines</li>
+          </ul>
+        </div>
+        <div class="col-card">
+          <h3>Efekt</h3>
+          <ul>
+            <li>Profil który faktycznie generuje zapytania</li>
+            <li>Klient widzi profesjonalnie dopracowany dokument</li>
+            <li>Wyższy wskaźnik konwersji profil → kontakt</li>
+          </ul>
+        </div>
+      </div>
     </div>
-    <div class="two-col">
-      <div class="col-card">
-        <h3>Co sprawdza AI</h3>
-        <ul>
-          <li>Precyzja opisu produktu / usługi / technologii</li>
-          <li>Jasność kryteriów partnera którego szukamy</li>
-          <li>Odpowiednie słowa kluczowe do wyszukiwania</li>
-          <li>Zgodność z POD Guidelines</li>
-        </ul>
-      </div>
-      <div class="col-card">
-        <h3>Efekt</h3>
-        <ul>
-          <li>Profil który faktycznie generuje zapytania</li>
-          
-          <li>Klient widzi profesjonalnie dopracowany dokument</li>
-          <li>Wyższy wskaźnik konwersji profil → kontakt</li>
-        </ul>
-      </div>
+    <div style="margin-top:14px; text-align:center;">
+      <div style="font-size:0.68em; color:#4A5568; margin-bottom:6px; text-transform:uppercase; letter-spacing:0.05em; font-weight:600;">Jak to wygląda w praktyce — kliknij aby powiększyć</div>
+      <img src="images/Grok_widok_ogólny.JPG" alt="Grok widok ogólny"
+           onclick="openSvgModal('images/grok_kompozyt.svg', event)"
+           style="height:130px; border-radius:8px; border:2px solid #0057A8; cursor:zoom-in; box-shadow:0 2px 12px rgba(0,87,168,0.15); transition:transform 0.15s ease;"
+           onmouseover="this.style.transform='scale(1.03)'"
+           onmouseout="this.style.transform='scale(1)'">
     </div>
   </div>
 </div>
@@ -369,6 +394,7 @@ To jest fundament pod slajd o Orkiestrze.
   <div class="slide-header">
     <div class="chapter">Rozdział 5 / 8</div>
     <h2>EEN Matcher — robot który dopasowuje potencjalnych klientów do wyselekcjonowanych profili - najlepszych dla specyfiki regionu</h2>
+    <img src="images/Belka-EEN-WCTT-PL.png" class="slide-header-logo" alt="WCTT EEN">
   </div>
   <div class="slide-body">
     <div class="pipeline" style="margin-bottom:16px;">
@@ -426,6 +452,7 @@ NIE MÓWIĆ WPROST o "ciecia" — slajd mówi sam za siebie.
   <div class="slide-header">
     <div class="chapter">Rozdział 5b / 8</div>
     <h2>Spotkania brokerskie</h2>
+    <img src="images/Belka-EEN-WCTT-PL.png" class="slide-header-logo" alt="WCTT EEN">
   </div>
   <div class="slide-body" style="padding-top:24px;">
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:20px;">
@@ -467,6 +494,7 @@ NIE MÓWIĆ WPROST o "ciecia" — slajd mówi sam za siebie.
   <div class="slide-header">
     <div class="chapter">Rozdział 6 / 8</div>
     <h2>Raporty merytoryczne — intelligence brief co tydzień</h2>
+    <img src="images/Belka-EEN-WCTT-PL.png" class="slide-header-logo" alt="WCTT EEN">
   </div>
   <div class="slide-body">
     <p class="lead">Automatyczne raporty branżowe generowane przez GitHub Actions każdego czwartku o 8:00. Klient nie dostaje newslettera — dostaje wywiad gospodarczy skrojony pod jego firmę.</p>
@@ -628,6 +656,20 @@ PUENTA: A konsultant EEN? Być orkiestrantem, nie instrumentem.
   });
 </script>
 <script>
+  function openSvgModal(svgSrc, e) {
+    if (e) { e.stopPropagation(); e.preventDefault(); }
+    var existing = document.getElementById('zoomOverlay');
+    if (existing) existing.remove();
+    var overlay = document.createElement('div');
+    overlay.id = 'zoomOverlay';
+    overlay.onclick = function() { overlay.remove(); };
+    overlay.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.92);z-index:999999;display:flex;align-items:center;justify-content:center;cursor:zoom-out;';
+    var img = document.createElement('img');
+    img.src = svgSrc;
+    img.style.cssText = 'max-width:92vw;max-height:92vh;border-radius:8px;box-shadow:0 8px 40px rgba(0,0,0,0.6);background:white;';
+    overlay.appendChild(img);
+    document.body.appendChild(overlay);
+  }
   function openGalleryModal(src, alt, e) {
     if (e) { e.stopPropagation(); e.preventDefault(); }
     // Utwórz overlay bezpośrednio na document.body omijając transform Reveal.js
